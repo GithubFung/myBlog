@@ -23,9 +23,12 @@ def create_app(test_config=None):
     # 引入blog视图文件
     from app.blog import views as blog
     app.register_blueprint(blog.bp)
+    from app.auth import views as auth
+    app.register_blueprint(auth.bp)
     # url引入
     app.add_url_rule('/', endpoint='index', view_func=blog.index)
-
+    # app.add_url_rule('/',endpoint='login',view_func=auth.login)
     # 注册数据库模型
     from app.blog import models
+    from app.auth import models
     return app
